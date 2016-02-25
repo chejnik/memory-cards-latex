@@ -1,0 +1,597 @@
+\documentclass[12pt]{article}
+
+% ############################################################# GEOMETRY
+\usepackage{geometry}
+\geometry{
+ headsep = 0pt,
+ headheight= 0pt, 
+  hmarginratio =  1:1,
+  vmarginratio = 1:1,
+  bindingoffset = 0cm,
+  onecolumn,
+  a3paper,
+  layoutwidth = 210 mm,
+  layoutheight = 310 mm,
+  layouthoffset=\dimexpr(\paperwidth-\csname Gm@layoutwidth\endcsname)/2\relax,
+  layoutvoffset=\dimexpr(\paperheight-\csname Gm@layoutheight\endcsname)/2\relax,
+  showcrop
+}
+
+% ############################################################# ENCODING, FONTS
+\usepackage[icelandic, latin, czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{textpos}
+%\usepackage[showboxes]{textpos}
+\usepackage{fix-cm}
+% ###################################################### HYPERREF & PDF INFO #
+
+% unicode neccessary so that national characters in hypersetup appear ok
+\usepackage[pdftex, unicode, hyperfootnotes=false]{hyperref}
+
+% hyperlinks in black
+\makeatletter
+\let\Hy@linktoc\Hy@linktoc@none
+\makeatother
+
+\hypersetup
+  { pdftitle={Pexeso s islandskými slovíčky I.}
+  , pdfauthor={Aleš a Dorota Chejnovi}
+  , pdfsubject={pexeso}
+  , pdfkeywords={pexeso,hvalur.org%
+               , islandština, čeština, slovník}
+  , bookmarks=false
+  , colorlinks=true
+  , citecolor=black
+  , urlcolor= red-crayola
+  , linkcolor=black}
+
+\usepackage{tipa}
+\def\dicIPA#1{\textipa{[#1]}}
+\usepackage{caption}
+
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{mwe}
+% #################################################################### COLORS #
+
+\usepackage{color}
+\definecolor {darkgreen}          {rgb} {0.40, 0.01, 0.24}
+
+\definecolor{title}{RGB}{16, 13, 32}
+\definecolor{cerulean-dark}{rgb}{0.0, 0.48, 0.65}
+
+\definecolor{alizarin}{rgb}{0.82, 0.1, 0.26}%
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}%
+\definecolor{blue(pigment)}{rgb}{0.2, 0.2, 0.6}%
+
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}%
+
+\definecolor{byzantium}{rgb}{0.44, 0.16, 0.39}%
+
+\definecolor{darkgoldenrod}{rgb}{0.72, 0.53, 0.04}
+\definecolor{darkmagenta}{rgb}{0.55, 0.0, 0.55}
+\definecolor{forestgreen(traditional)}{rgb}{0.0, 0.27, 0.13}
+\definecolor{ferrarired}{rgb}{1.0, 0.11, 0.0}
+\definecolor{goldenpoppy}{rgb}{0.99, 0.76, 0.0}
+\definecolor{hanpurple}{rgb}{0.32, 0.09, 0.98}
+\definecolor{heliotrope}{rgb}{0.87, 0.45, 1.0}
+\definecolor{mediumjunglegreen}{rgb}{0.11, 0.21, 0.18}
+
+% ##### 24 pack Mini Twistables Crayola, 2004
+% https://en.wikipedia.org/wiki/List_of_Crayola_crayon_colors?oldformat=true
+
+\definecolor{apricot-crayola}{RGB}{253, 217, 181} %Apricot 	#FDD9B5 
+\definecolor{black-crayola}{RGB}{0, 0, 0}%Black 	#000000 
+\definecolor{blue-crayola}{RGB}{31, 117, 254}%Blue 	#1F75FE 
+\definecolor{blue green-crayola}{RGB}{13, 152, 186}%Blue Green 	#0D98BA 
+\definecolor{blue violet-crayola}{RGB}{115, 102, 189}  %Blue Violet 	#7366BD 
+\definecolor{brown-crayola}{RGB}{180, 103, 77}%Brown 	#B4674D 
+\definecolor{carnation pink-crayola}{RGB}{255, 170, 204}%Carnation Pink 	#FFAACC 
+\definecolor{cerulean-crayola}{RGB}{29, 172, 214}%Cerulean 	#1DACD6 
+\definecolor{dandelion-crayola}{RGB}{253, 219, 109}%Dandelion 	#FDDB6D 
+\definecolor{gray-crayola}{RGB}{149, 145, 140}%Gray 	#95918C 
+\definecolor{green-crayola}{RGB}{28, 172, 120} %Green 	#1CAC78 
+\definecolor{green yellow-crayola}{RGB}{240, 232, 145}%Green Yellow 	#F0E891 
+\definecolor{indigo-crayola}{RGB}{93, 118, 203}%Indigo 	#5D76CB 
+\definecolor{orange-crayola}{RGB}{255, 117, 56} %Orange 	#FF7538 
+\definecolor{red-crayola}{RGB}{238, 32, 77} %Red 	#EE204D 
+\definecolor{red orange-crayola}{RGB}{255, 83, 73}%Red Orange 	#FF5349 
+\definecolor{red violet-crayola}{RGB}{192, 68, 143} %	#C0448F 
+\definecolor{scarlet-crayola}{RGB}{252, 40, 71}%Scarlet 	#FC2847 
+\definecolor{violet purple-crayola}{RGB}{146, 110, 174}%Violet (Purple) 	#926EAE 
+\definecolor{violet red-crayola}{RGB}{247, 83, 148}%Violet Red 	#F75394 	
+\definecolor{white-crayola}{RGB}{255, 255, 255}%White 	#FFFFFF 
+\definecolor{yellow-crayola}{RGB}{252, 232, 131}%Yellow 	#FCE883 	
+\definecolor{yellow green-crayola}{RGB}{197, 227, 132}%Yellow Green 	#C5E384 
+\definecolor{yellow orange-crayola}{RGB}{255, 174, 66} % 	#FFAE42 
+
+\newcommand\pexesobgcolor{yellow green-crayola}%<== background color
+
+\usepackage{XCharter}
+% #################################################################### LAYOUT #
+\usepackage{setspace}
+% \normalsize should be {8pt}{9.6pt}
+% Two columns layout ruler
+\setlength\columnsep    {2\baselineskip}
+\setlength\columnseprule{0.4pt}
+
+% Necessary for baseline alignment
+\topskip=\baselineskip
+\raggedbottom
+\setlength\parskip{0pt} % it's better to avoid glue
+
+% Temporarily suppress warnings
+\hbadness=5000
+\vbadness=5000
+
+\setlength\emergencystretch{17pt}
+
+% Allow smaller emergencystretch in several cases
+\newenvironment{xtolerant}[2]{%
+  \par
+  \ifx\empty#1\empty\else\tolerance=#1\relax\fi
+  \ifx\empty#2\empty\else\emergencystretch=#2\relax\fi
+}{%
+  \par
+}
+ \renewcommand{\baselinestretch}{0.82}
+ 
+ \graphicspath{%
+ % {/home/chejnik/Dokumenty/hvalur.org/images/biolib/full/}%
+ % {/home/chejnik/Dokumenty/hvalur.org/images/uploaded_files/}
+  {/home/chejnik/Dokumenty/cernobile_kresby_pexeso/}}
+
+\newcommand{\czHyphen}{\rule[.45ex]{.2em}{.11ex}}
+\newcommand*{\addthinS}{\hskip0.06667em\relax}
+\newcommand*{\addthinSS}{\hskip0.00007em\relax}
+
+
+% ################################################################ TIKZ COORDINATES #
+\def\cropmarkgap{10}% mm
+\makeatletter
+\def\Gm@cropmark(#1,#2,#3,#4){% #1 = x direction, #2 = y direction, #3 & #4 no longet used
+  \begin{picture}(0,0)
+    \setlength\unitlength{1truemm}%
+    \linethickness{0.25pt}%
+    \put(\the\numexpr #1*\cropmarkgap\relax,0){\line(#1,0){\the\numexpr 20-\cropmarkgap}}%
+    \put(0,\the\numexpr #2*\cropmarkgap\relax){\line(0,#2){\the\numexpr 20-\cropmarkgap}}%
+  \end{picture}}%
+\makeatother
+
+\makeatletter
+\def\parsecomma#1,#2\endparsecomma{\def\page@x{#1}\def\page@y{#2}}
+\tikzdeclarecoordinatesystem{page}{
+    \parsecomma#1\endparsecomma
+    \pgfpointanchor{current page}{north east}
+    % Save the upper right corner
+    \pgf@xc=\pgf@x%
+    \pgf@yc=\pgf@y%
+    % save the lower left corner
+    \pgfpointanchor{current page}{south west}
+    \pgf@xb=\pgf@x%
+    \pgf@yb=\pgf@y%
+    % Transform to the correct placement
+    \pgfmathparse{(\pgf@xc-\pgf@xb)/2.*\page@x+(\pgf@xc+\pgf@xb)/2.}
+    \expandafter\pgf@x\expandafter=\pgfmathresult pt
+    \pgfmathparse{(\pgf@yc-\pgf@yb)/2.*\page@y+(\pgf@yc+\pgf@yb)/2.}
+    \expandafter\pgf@y\expandafter=\pgfmathresult pt
+}
+\makeatother
+
+\newsavebox{\tempbox}
+\newsavebox{\tmpbox}
+\newsavebox{\tmbox}
+\newsavebox{\bbox}
+\newsavebox{\bbbox}
+
+\usepackage{eso-pic}
+\usepackage{tikzpagenodes}
+%\AddToShipoutPicture{\drawbackground}
+\newcommand{\shiftleft}{\hspace*{-0.55\dimexpr\csname Gm@layoutwidth\endcsname-\textwidth\relax}}
+\newcommand{\shiftup}{\vspace*{-0.13\dimexpr\csname Gm@layoutheight\endcsname-\textwidth\relax}}
+
+% ###################################################### INTERFACE
+%%% Define phantom
+\newcommand\titlebox[1]{%
+  \setlength\fboxsep{0pt}% change according to your needs
+ % \textcolor{white}{\vphantom{fg}#1}
+ \vphantom{fg}#1
+}
+
+%%% Define "Array" interface
+\makeatletter
+    \newcounter{imgs}
+    \setcounter{imgs}{0}
+    %#1 is the image
+    %#2 is the title
+    %#3 is the color
+    \newcommand{\addimg}[3]{%
+        \stepcounter{imgs}%
+        \@namedef{imgimage\theimgs}{#1}%
+        \@namedef{imgtitle\theimgs}{#2}%
+        \@namedef{imgcolor\theimgs}{#3}}
+    \newcommand{\getimage}[1]{\expandafter\@nameuse\expandafter{imgimage#1}}%
+    \newcommand{\gettitle}[1]{\expandafter\@nameuse\expandafter{imgtitle#1}}%
+    \newcommand{\getcolor}[1]{\expandafter\@nameuse\expandafter{imgcolor#1}}%
+\makeatother
+
+%%% Define Cards
+\addimg{auto}{auto}{apricot-crayola}%1
+\addimg{autobus}{autobus}{blue-crayola}%
+\addimg{babicka}{babička}{blue green-crayola}%
+\addimg{kolo}{kolo}{blue violet-crayola}%
+\addimg{boty}{boty}{brown-crayola}%
+\addimg{chleba}{chleba}{carnation pink-crayola}%
+\addimg{dedecek}{dědeček}{cerulean-crayola}%
+\addimg{fotak}{foťák}{dandelion-crayola}%
+\addimg{dum}{dům}{green-crayola}%
+\addimg{holcicka}{holka}{green yellow-crayola}%
+\addimg{jablko}{jablko}{indigo-crayola}%
+\addimg{kalhoty}{kalhoty}{orange-crayola}%
+\addimg{kluk}{kluk}{red-crayola}%
+\addimg{kniha}{kniha}{red orange-crayola}%
+\addimg{kocka}{kočka}{red violet-crayola}%
+\addimg{kvetina}{květina}{scarlet-crayola}%
+\addimg{televize}{televize}{violet purple-crayola}%
+\addimg{les}{les}{violet red-crayola}%
+\addimg{letadlo}{letadlo}{yellow-crayola}%
+\addimg{lod}{loď}{yellow green-crayola}%
+\addimg{majak}{maják}{yellow orange-crayola}%
+\addimg{mic}{míč}{yellow}%
+\addimg{ledovec}{ledovec}{orange}%
+\addimg{noviny}{noviny}{yellow}%
+\addimg{obrazek}{obrázek}{red}%
+\addimg{ovce}{ovce}{brown}%
+\addimg{pes}{pes}{green}%
+\addimg{pocitac}{počítač}{blue}%
+\addimg{ptak}{pták}{green}%
+\addimg{ryba}{ryba}{red}%
+\addimg{skola}{škola}{yellow}%
+\addimg{strom}{strom}{orange}%32
+\addimg{auto}{bíll}{alizarin}%
+\addimg{autobus}{strætó}{applegreen}%
+\addimg{babicka}{amma}{blue(pigment)}%
+\addimg{kolo}{hjól}{yellow}%
+\addimg{boty}{skór}{orange}%
+\addimg{chleba}{brauð}{yellow}%
+\addimg{dedecek}{afi}{red}%
+\addimg{fotak}{myndavél}{brown}%
+\addimg{dum}{hús}{green}%
+\addimg{holcicka}{stúlka}{blue}%
+\addimg{jablko}{epli}{green}%
+\addimg{kalhoty}{buxur}{red}%
+\addimg{kluk}{strákur}{yellow}%
+\addimg{kniha}{bók}{orange}%
+\addimg{kocka}{köttur}{yellow}%
+\addimg{kvetina}{blóm}{red}%
+\addimg{televize}{sjónvarp}{brown}%
+\addimg{les}{skógur}{green}%
+\addimg{letadlo}{flugvél}{blue}%
+\addimg{lod}{skip}{green}%
+\addimg{majak}{viti}{red}%
+\addimg{mic}{bolti}{yellow}%
+\addimg{ledovec}{jökull}{orange}%
+\addimg{noviny}{dagblað}{yellow}%
+\addimg{obrazek}{mynd}{red}%
+\addimg{ovce}{fé}{brown}%
+\addimg{pes}{hundur}{green}%
+\addimg{pocitac}{tölva}{blue}%
+\addimg{ptak}{fugl}{green}%
+\addimg{ryba}{fiskur}{red}%
+\addimg{skola}{skóli}{yellow}%
+\addimg{strom}{tré}{orange}%
+
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+\addimg{karticka_rub2}{}{}%
+
+%%% Global Setup
+\newcommand\xspacing{2.5cm}%<== space between the images
+\newcommand\yspacing{2.5cm}%<== vertical space between rows
+\newcommand\xspacingadd{0.85mm}%<== vertical space between rows
+\newcommand\imgperrow{4}%<== number of images per row
+
+\tikzset{p_title/.style={text centered, minimum height=0.6cm, minimum width=5cm, font=\bfseries}}
+\tikzset{p_title_line/.style={thick}}
+
+%%% Define primary for loop
+\newcommand{\forloop}[2]{%
+    \foreach [count=\i] \x in {#1,...,#2}%<==loop for each image in the array
+    {
+        \node [inner sep=0pt] (B) at (A) {%
+\setlength{\fboxsep}{0pt}%
+\setlength{\fboxrule}{1pt}%
+\fbox{\includegraphics[width=5cm]{\getimage{\x}}}%
+};%
+
+        \node [p_title] (AA) at ($(B.north west)+(2.5,-0.34)$) {\titlebox{\gettitle{\x}}};%
+        \draw [p_title_line, color=\getcolor{\x}]($(B.north west)+(0.05,-0.60)$) -- ($(B.north east)+(-0.05,-0.60)$);%
+        \pgfmathparse{Mod(\i,\imgperrow)==0?1:0};%
+        \ifnum\pgfmathresult>0
+            \coordinate (left) at ([yshift=-\yspacing]left);
+            \path let \p1=(left),\p2=(B.south) in coordinate (A) at (\x1,\y2-\yspacing);
+        \else   
+            \coordinate (A) at ([xshift=\xspacing]B.east);%
+        \fi
+    }}
+    
+%%% Define primary for loop BACK (no title, no color, the same image)
+\newcommand{\forloopback}[2]{%
+    \foreach [count=\i] \x in {#1,...,#2}%<==loop for each image in the array
+    {
+        \node [inner sep=0pt] (B) at (A) {%
+\setlength{\fboxsep}{0pt}%
+\setlength{\fboxrule}{1pt}%
+\fbox{\includegraphics[width=5cm]{\getimage{\x}}}%
+};%
+
+       \pgfmathparse{Mod(\i,\imgperrow)==0?1:0};%
+        \ifnum\pgfmathresult>0
+            \coordinate (left) at ([yshift=-\yspacing]left);
+            \path let \p1=(left),\p2=(B.south) in coordinate (A) at (\x1,\y2-\yspacing);
+        \else   
+            \coordinate (A) at ([xshift=\xspacing]B.east);%
+        \fi
+    }}
+    
+%%% Define the for loop for 2 images per row on third page
+\newcommand{\forlooptwo}[2]{%
+    \begingroup
+    \def\imgperrow{2}
+    \let\originalxspacing\xspacing
+   % \def\xspacing{5*\originalxspacing}
+    \def\xspacing{5*\originalxspacing+\xspacingadd}
+    \forloop{#1}{#2}\endgroup}
+
+%%% Define the for loop for 2 BACK images per row on third page
+\newcommand{\forlooptwoback}[2]{%
+    \begingroup
+    \def\imgperrow{2}
+    \let\originalxspacing\xspacing
+   % \def\xspacing{5*\originalxspacing}
+    \def\xspacing{5*\originalxspacing+\xspacingadd}
+    \forloopback{#1}{#2}\endgroup}
+%%% x, y coordinates to display the background 
+    \newcommand\dpx{0.745}%<== x
+    \newcommand\dpy{0.76}%<== y
+    
+% ###################################################### DOCUMENT
+\begin{document}
+\thispagestyle{empty}
+
+% ##################################################### SAVE BOXES
+\savebox{\tempbox}{%
+% ############################ FIRST PAGE
+    \begin{tikzpicture}[remember picture, overlay]
+    \fill[\pexesobgcolor] (page cs:-\dpx,\dpy)  rectangle (page cs:\dpx,-\dpy);
+        \coordinate (A) at (page cs:-0.5045,0.595);
+        \coordinate (left) at (A);
+        \forloop{1}{24}
+    \end{tikzpicture}}
+
+% ############################ SECOND PAGE
+\savebox{\tmpbox}{%
+\begin{tikzpicture}[remember picture, overlay]
+\fill[\pexesobgcolor] (page cs:-\dpx,\dpy)  rectangle (page cs:\dpx,-\dpy);
+        \coordinate (A) at (page cs:-0.5045,0.595);
+        \coordinate (left) at (A);
+        \forloop{25}{48}
+    \end{tikzpicture}}
+
+% ############################ THIRD PAGE
+\savebox{\tmbox}{%
+  \begin{tikzpicture}[remember picture, overlay]
+\fill[\pexesobgcolor] (page cs:-\dpx,\dpy)  rectangle (page cs:\dpx,-\dpy);
+ \fill[white] (page cs:-0.65,0.65)  rectangle (page cs:0.65,-0.65);  
+  \coordinate (A) at (page cs:-0.5045,0.595);
+        \coordinate (left) at (A);
+        \forloop{49}{52}
+        \forlooptwo{53}{60}
+        \forloop{61}{64}
+\end{tikzpicture}}
+
+% ####################### first and second back page
+\savebox{\bbox}{%
+    \begin{tikzpicture}[remember picture, overlay]
+ \fill[\pexesobgcolor] (page cs:-\dpx,\dpy)  rectangle (page cs:\dpx,-\dpy);
+        \coordinate (A) at (page cs:-0.5045,0.595);
+        \coordinate (left) at (A);
+        \forloopback{65}{88}
+    \end{tikzpicture}}
+
+% ####################### half empty back page
+\savebox{\bbbox}{%
+    \begin{tikzpicture}[remember picture, overlay]
+\fill[\pexesobgcolor] (page cs:-\dpx,\dpy)  rectangle (page cs:\dpx,-\dpy);
+     \fill[white] (page cs:-0.65,0.65)  rectangle (page cs:0.65,-0.65); 
+        \coordinate (A) at (page cs:-0.5045,0.595);
+        \coordinate (left) at (A);
+       \forloopback{65}{68}
+        \forlooptwoback{65}{72}
+        \forloopback{65}{68}
+    \node[inner sep=0pt] (O) at (page cs:0.005,-0.1)
+        {%
+\setlength{\fboxsep}{0pt}%
+\setlength{\fboxrule}{0pt}%
+\fbox{\includegraphics[width=10cm]{titleimage.jpg}}%
+};    
+    \end{tikzpicture}}
+    
+% ##################################################################### START    
+\makeatletter
+\begin{tikzpicture}[remember picture, overlay]
+\path (current page.north west) ++(\csname Gm@layouthoffset\endcsname,-\csname Gm@layoutvoffset\endcsname)
+  ++(0.5\csname Gm@layoutwidth\endcsname,-0.5\csname Gm@layoutheight\endcsname) coordinate(Center);
+\node[inner sep=0pt] at (Center) {\usebox{\tempbox}};
+\end{tikzpicture}
+\makeatother
+
+\clearpage
+\thispagestyle{empty}
+\makeatletter
+\begin{tikzpicture}[remember picture, overlay]
+\path (current page.north west) ++(\csname Gm@layouthoffset\endcsname,-\csname Gm@layoutvoffset\endcsname)
+  ++(0.5\csname Gm@layoutwidth\endcsname,-0.5\csname Gm@layoutheight\endcsname) coordinate(Center);
+\node[inner sep=0pt] at (Center) {\usebox{\bbox}};
+\end{tikzpicture}
+\makeatother
+
+\clearpage
+\thispagestyle{empty}
+\makeatletter
+\begin{tikzpicture}[remember picture, overlay]
+\path (current page.north west) ++(\csname Gm@layouthoffset\endcsname,-\csname Gm@layoutvoffset\endcsname)
+  ++(0.5\csname Gm@layoutwidth\endcsname,-0.5\csname Gm@layoutheight\endcsname) coordinate(Center);
+\node[inner sep=0pt] at (Center) {\usebox{\tmpbox}};
+\end{tikzpicture}
+\makeatother
+
+\clearpage
+\thispagestyle{empty}
+\makeatletter
+\begin{tikzpicture}[remember picture, overlay]
+\path (current page.north west) ++(\csname Gm@layouthoffset\endcsname,-\csname Gm@layoutvoffset\endcsname)
+  ++(0.5\csname Gm@layoutwidth\endcsname,-0.5\csname Gm@layoutheight\endcsname) coordinate(Center);
+\node[inner sep=0pt] at (Center) {\usebox{\bbox}};
+\end{tikzpicture}
+\makeatother
+
+\clearpage
+\thispagestyle{empty}
+\makeatletter
+\begin{tikzpicture}[remember picture, overlay]
+\path (current page.north west) ++(\csname Gm@layouthoffset\endcsname,-\csname Gm@layoutvoffset\endcsname)
+  ++(0.5\csname Gm@layoutwidth\endcsname,-0.5\csname Gm@layoutheight\endcsname) coordinate(Center);
+\node[inner sep=0pt] at (Center) {\usebox{\tmbox}};
+\end{tikzpicture}
+\makeatother
+\begin{textblock}{5}(1.50,0.35)
+   {\Large{Pexeso s islandskými slovíčky}}\\\vspace*{2ex}
+   Pojďte se učit islandsky s obrázkovým pexesem!\\
+   Pexeso obsahuje 64 kartiček. Kartičky si pečlivě vystříhejte. 32 kartiček je s islandskými slovy a 32 kartiček s českými slovy. V tabulce níže se dozvíte, jak slovo vyslovit. Nebojte se; když si nebudete jisti, navštivte \url{www.hvalur.org} a poslechněte si výslovnost.\\\vspace*{1ex}
+   \begin{table}[]
+\centering
+\caption*{Výslovnost islandských slov}
+\label{vyslovnost}
+\begin{tabular}{llll}
+\textbf{} \textit{slovo} & \textit{výslovnost} & \textit{slovo} & \textit{výslovnost} \\ [0.1ex]
+\hline \\[-1.5ex]
+\textbf{} afi & \dicIPA{{a}{\textlengthmark}{v}{\textsci}} & hús & \dicIPA{{h}{u}{\textlengthmark}{s}} \\
+\textbf{} amma & \dicIPA{{a}{m}{\textlengthmark}{a}} & jökull &  \dicIPA{{j}{\oe}{\textlengthmark}{\r{g}}{\textscy}{\textsubring{d}}{\textsubring{l}}} \\
+\textbf{} bíll& \dicIPA{{\textsubring{b}}{i}{\textsubring{d}}{\textsubring{l}}} & köttur & \dicIPA{{k\smash{\textsuperscript{h}}}{\oe}{h}{\textsubring{d}}{\textscy}{\textsubring{r}}}  \\
+\textbf{} blóm& \dicIPA{{\textsubring{b}}{l}{ou}{\textlengthmark}{\textsubring{m}}} & mynd & \dicIPA{{m}{\textsci}{n}{\textsubring{d}}}  \\
+\textbf{} bolti& \dicIPA{{\textsubring{b}}{\textopeno}{\textsubring{l}}{\textsubring{d}}{\textsci}} & myndavél &  \dicIPA{{m}{\textsci}{n}{\textsubring{d}}{a}{v}{j}{\textepsilon}{\textsubring{l}}} \\
+\textbf{} bók&  \dicIPA{{\textsubring{b}}{ou}{\textlengthmark}{\r{g}}} & sjónvarp &   \dicIPA{{s}{j}{ou}{n}{v}{a}{\textsubring{r}}{\textsubring{b}}}   \\
+\textbf{} brauð& \dicIPA{{\textsubring{b}}{r}{\oe i}{\textlengthmark}{\texttheta}} & skip &   \dicIPA{{s}{\r{\textObardotlessj}}{\textsci}{\textlengthmark}{\textsubring{b}}}  \\
+\textbf{} buxur& \dicIPA{{\textsubring{b}}{\textscy}{x}{s}{\textscy}{\textsubring{r}}} & skógur & \dicIPA{{s}{\r{g}}{ou}{\textlengthmark}{\textscy}{\textsubring{r}}}   \\
+\textbf{} dagblað& \dicIPA{{\textsubring{d}}{a}{\textbabygamma}{\textsubring{b}}{l}{a}{\texttheta}} & skóli &   \dicIPA{{s}{\r{g}}{ou}{\textlengthmark}{l}{\textsci}}  \\
+\textbf{} epli& \dicIPA{{\textepsilon}{h}{\textsubring{b}}{l}{\textsci}} & skór &  \dicIPA{{s}{\r{g}}{ou}{\textlengthmark}{\textsubring{r}}}    \\
+\textbf{} fé& \dicIPA{{f}{j}{\textepsilon}{\textlengthmark}} & strákur &   \dicIPA{{s}{\textsubring{d}}{r}{au}{\textlengthmark}{\r{g}}{\textscy}{\textsubring{r}}}  \\
+\textbf{} fiskur & \dicIPA{{f}{\textsci}{s}{\r{g}}{\textscy}{\textsubring{r}}} & strætó &  \dicIPA{{s}{\textsubring{d}}{r}{a}{i}{\textlengthmark}{\textsubring{d}}{ou}}   \\
+\textbf{} flugvél & \dicIPA{{f}{l}{\textscy}{\textbabygamma}{v}{j}{\textepsilon}{\textsubring{l}}} & stúlka &  \dicIPA{{s}{\textsubring{d}}{u}{\textsubring{l}}{\r{g}}{a}}   \\
+\textbf{} fugl & \dicIPA{{f}{\textscy}{\r{g}}{\textsubring{l}}} & tré &  \dicIPA{{t\smash{\textsuperscript{h}}}{r}{j}{\textepsilon}{\textlengthmark}}   \\
+\textbf{} hjól & \dicIPA{{\c{c}}{ou}{\textlengthmark}{\textsubring{l}}} & tölva &  \dicIPA{{t\smash{\textsuperscript{h}}}{\oe}{l}{v}{a}}   \\
+\textbf{} hundur & \dicIPA{{h}{\textscy}{n}{\textsubring{d}}{\textscy}{\textsubring{r}}} & viti &   \dicIPA{{v}{\textsci}{\textlengthmark}{\textsubring{d}}{\textsci}}  \\
+\end{tabular}
+\end{table}
+\vspace*{2ex}
+\noindent\textit{Varianta hry:}\\
+{\small{Odkryjte nejdříve kartičku s českým slovem, pak řekněte nahlas islandské slovo a pak teprve odkryjte kartičku s islandským slovem. Jestli jste řekli správné slovo a kartičky mají stejný obrázek, získáváte kartičky k sobě na hromádku.}}\\\vspace*{1ex}
+\begin{spacing}{0.7}
+\noindent {\scriptsize{\onehalfspacing Autoři: Aleš a Dorota Chejnovi\\
+Autorka obrázků: Lucie Peterková\\
+Sazba: Aleš Chejn, \LaTeX\\
+Tisk: Tiskárna MELMEN, s.r.o., Pardubice\\
+Vydal: Aleš Chejn, Husova 1674, Pardubice 53003\\ 
+e-mail: \href{mailto:achejn@gmail.com}{achejn@gmail.com}, \url{www.hvalur.org}\\
+Náklad: 100 výtisků\\
+Rok: 2016}}\\
+\end{spacing}
+\end{textblock}
+
+\clearpage
+\thispagestyle{empty}
+\makeatletter
+\begin{tikzpicture}[remember picture, overlay]
+\path (current page.north west) ++(\csname Gm@layouthoffset\endcsname,-\csname Gm@layoutvoffset\endcsname)
+  ++(0.5\csname Gm@layoutwidth\endcsname,-0.5\csname Gm@layoutheight\endcsname) coordinate(Center);
+\node[inner sep=0pt] at (Center) {\usebox{\bbbox}};
+\end{tikzpicture}
+\makeatother
+\begin{textblock}{5}(1.65,0.45)
+\begin{center}
+   \fontsize{80}{90}\selectfont Pexeso\vspace*{-1ex}
+   {\color{red-crayola}{\Huge{\textit{s islandskými slovíčky}}}}
+\end{center}
+\end{textblock}
+\end{document}
